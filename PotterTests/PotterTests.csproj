@@ -64,7 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kata\Potter.csproj">
+    <ProjectReference Include="..\Potter\Potter.csproj">
       <Project>{a17dc7a3-6f5d-4f7d-a97c-639b06e8fa52}</Project>
       <Name>Potter</Name>
     </ProjectReference>

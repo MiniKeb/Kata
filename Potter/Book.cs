@@ -13,5 +13,13 @@ namespace Potter
         {
             this.Title = title;
         }
+
+        public decimal Price
+        {
+            get
+            {
+                return 8m;
+            }
+        }
     }
 }
