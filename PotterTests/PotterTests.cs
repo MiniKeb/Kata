@@ -120,5 +120,33 @@ namespace PotterTests
             
             Assert.That(cart.GetPrice(), Is.EqualTo(36.8m));
         }
+
+        [Test]
+        public void DoitIndiquerUnPrixPour3X2Plus1()
+        {
+            var book = new Book("L'école des sorciers");
+
+            var book2 = new Book("Philosophal Stone");
+            var book2Bis = new Book("Philosophal Stone");
+            var book2Ter = new Book("Philosophal Stone");
+
+            var book3 = new Book("Prisonnier Azkaban");
+            var book3Bis = new Book("Prisonnier Azkaban");
+            var book3Ter = new Book("Prisonnier Azkaban");
+
+
+            var cart = new Cart();
+            cart.AddBook(book);
+            cart.AddBook(book2);
+            cart.AddBook(book3);
+            
+            cart.AddBook(book2Bis);
+            cart.AddBook(book3Bis);
+
+            cart.AddBook(book2Ter);
+            cart.AddBook(book3Ter);
+
+            Assert.That(cart.GetPrice(), Is.EqualTo(52m));
+        }
     }
 }

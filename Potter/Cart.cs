@@ -24,32 +24,41 @@ namespace Potter
             var groupedBooks = this.books.GroupBy(book => book.Title).ToDictionary(grouping => grouping.Key, grouping => grouping.Count());
             var totalBook = books.Count();
 
-            var discountRate = GetDiscountRate(groupedBooks);
-            return 8 * (titleCount * discountRate + (totalBook - titleCount));
+            //var discountRate = GetDiscountRate(groupedBooks.Count);
+            //return 8 * (titleCount * discountRate + (totalBook - titleCount));
+            return GetTotalPrice(groupedBooks);
         }
 
-        private static decimal GetDiscountRate(Dictionary<string,int> groupedBooks)
+        private decimal GetTotalPrice(Dictionary<string, int> remainingBooks)
         {
-            decimal discountRate = 1;
-
-            var permierLot = groupedBooks.Count();
-            // reupérer le prix de ce premier lot dans une variable avec le switch
-            foreach (var pair in groupedBooks)
+            var copy = new Dictionary<string, int>(remainingBooks);
+            foreach (var pair in remainingBooks)
             {
-                if(pair.Value == 1)
+                if (pair.Value == 0)
                 {
-                     groupedBooks.Remove(pair.Key);
+                    copy.Remove(pair.Key);
                 }
                 else
                 {
-                    groupedBooks[pair.Key] = pair.Value - 1;
+                    copy[pair.Key] = pair.Value - 1;
                 }
             }
-            var deuxiemeLot = groupedBooks.Count();
-            // ajouter le prix de ce deuxieme lot dans la variable avec le switch
+
+            var bookCount = copy.Count();
+            var currentPrice = 8 * GetDiscountRate(bookCount) * bookCount;
+
+            decimal nextPrice = 0;
+            if(copy.Count > 0)
+                nextPrice = this.GetTotalPrice(copy);
+            
+            return currentPrice + nextPrice;
+        }
 
 
-            switch (groupedBooks.Count)
+        private static decimal GetDiscountRate(int count)
+        {
+            decimal discountRate;
+            switch (count)
             {
                 case 2:
                     discountRate = 0.95m;
@@ -63,9 +72,10 @@ namespace Potter
                 case 5:
                     discountRate = 0.75m;
                     break;
-
+                default:
+                    discountRate = 1m;
+                    break;
             }
-            
             return discountRate;
         }
     }
