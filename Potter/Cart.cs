@@ -20,33 +20,38 @@ namespace Potter
 
         public decimal GetPrice()
         {
-            var titleCount = this.books.Select(b => b.Title).Distinct().Count();
             var groupedBooks = this.books.GroupBy(book => book.Title).ToDictionary(grouping => grouping.Key, grouping => grouping.Count());
-            var totalBook = books.Count();
 
-            //var discountRate = GetDiscountRate(groupedBooks.Count);
-            //return 8 * (titleCount * discountRate + (totalBook - titleCount));
+            var bundleCount = groupedBooks.Max(pair => pair.Value);
+
             return GetTotalPrice(groupedBooks);
         }
 
         private decimal GetTotalPrice(Dictionary<string, int> remainingBooks)
         {
             var copy = new Dictionary<string, int>(remainingBooks);
+            var isSuperDiscount = copy.Count == 5 && copy.Count(b => b.Value >= 2) >= 3;
+
+            var ind = 0;
             foreach (var pair in remainingBooks)
             {
-                if (pair.Value == 0)
+                if ((ind < 4 && isSuperDiscount) || !isSuperDiscount)
                 {
-                    copy.Remove(pair.Key);
+                    if (pair.Value == 0)
+                    {
+                        copy.Remove(pair.Key);
+                    }
+                    else
+                    {
+                        copy[pair.Key] = pair.Value - 1;
+                    }
                 }
-                else
-                {
-                    copy[pair.Key] = pair.Value - 1;
-                }
+                ind++;
             }
 
-            var bookCount = copy.Count();
+            var bookCount = isSuperDiscount ? 4 : copy.Count;
             var currentPrice = 8 * GetDiscountRate(bookCount) * bookCount;
-
+            
             decimal nextPrice = 0;
             if(copy.Count > 0)
                 nextPrice = this.GetTotalPrice(copy);
@@ -77,6 +82,24 @@ namespace Potter
                     break;
             }
             return discountRate;
+        }
+    }
+
+    public class Combination
+    {
+        private readonly Dictionary<int, int> bundleOccurences;
+
+        public Combination()
+        {
+            this.bundleOccurences = new Dictionary<int, int>();
+        }
+
+        public void Add(int bookCount)
+        {
+            if(!this.bundleOccurences.ContainsKey(bookCount))
+                this.bundleOccurences.Add(bookCount, 0);
+
+            this.bundleOccurences[bookCount]++;
         }
     }
 }

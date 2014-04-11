@@ -99,7 +99,7 @@ namespace PotterTests
         }
 
         [Test]
-        public void DoitIndiquerUnPrixPour2X2Plus1()
+        public void DoitIndiquerUnPrixPour2X2TitrePlus1Titre()
         {
             var book = new Book("L'école des sorciers");
             
@@ -122,7 +122,7 @@ namespace PotterTests
         }
 
         [Test]
-        public void DoitIndiquerUnPrixPour3X2Plus1()
+        public void DoitIndiquerUnPrixPour3X2TitresPlus1Titre()
         {
             var book = new Book("L'école des sorciers");
 
@@ -147,6 +147,75 @@ namespace PotterTests
             cart.AddBook(book3Ter);
 
             Assert.That(cart.GetPrice(), Is.EqualTo(52m));
+        }
+
+        [Test]
+        public void DoitIndiquerUnPrixPour2X3TitresPlus2Titres()
+        {
+            var book1 = new Book("L'école des sorciers");
+            var book1Bis = new Book("L'école des sorciers");
+
+            var book2 = new Book("Philosophal Stone");
+            var book2Bis = new Book("Philosophal Stone");
+
+            var book3 = new Book("Prisonnier Azkaban");
+            var book3Bis = new Book("Prisonnier Azkaban");
+
+            var book4 = new Book("Tome 4");
+
+            var book5 = new Book("Tome 5");
+
+            var cart = new Cart();
+            cart.AddBook(book1);
+            cart.AddBook(book1Bis);
+
+            cart.AddBook(book2);
+            cart.AddBook(book2Bis);
+
+            cart.AddBook(book3);
+            cart.AddBook(book3Bis);
+
+            cart.AddBook(book4);
+            cart.AddBook(book5);
+
+            Assert.That(cart.GetPrice(), Is.EqualTo(51.2m));
+        }
+
+        [Test]
+        public void DoitIndiquerUnPrixPour3X2TitresPlus2X1TitresPlus2Titres()
+        {
+            var book1 = new Book("L'école des sorciers");
+            var book1Bis = new Book("L'école des sorciers");
+            var book1Ter = new Book("L'école des sorciers");
+
+            var book2 = new Book("Philosophal Stone");
+            var book2Bis = new Book("Philosophal Stone");
+            var book2Ter = new Book("Philosophal Stone");
+
+
+            var book3 = new Book("Prisonnier Azkaban");
+            var book3Bis = new Book("Prisonnier Azkaban");
+
+            var book4 = new Book("Tome 4");
+
+            var book5 = new Book("Tome 5");
+
+            var cart = new Cart();
+            cart.AddBook(book1);
+            cart.AddBook(book1Bis);
+            cart.AddBook(book1Ter);
+
+            cart.AddBook(book2);
+            cart.AddBook(book2Bis);
+            cart.AddBook(book2Ter);
+
+            cart.AddBook(book3);
+            cart.AddBook(book3Bis);
+
+            cart.AddBook(book4);
+            cart.AddBook(book5);
+
+            Assert.That(cart.GetPrice(), Is.EqualTo(66.4m));
         }
     }
 }
