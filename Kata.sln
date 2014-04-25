@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Potter", "Potter\Potter.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotterTests", "PotterTests\PotterTests.csproj", "{07299919-B8B2-4FA1-A269-F7595DC8B43B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife", "GameOfLife\GameOfLife.csproj", "{745F82B4-C078-4683-86D2-4154A693D4BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife.Tests", "GameOfLife.Tests\GameOfLife.Tests.csproj", "{F4B65953-DEEC-499F-ACED-34475A57D6C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{07299919-B8B2-4FA1-A269-F7595DC8B43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07299919-B8B2-4FA1-A269-F7595DC8B43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07299919-B8B2-4FA1-A269-F7595DC8B43B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745F82B4-C078-4683-86D2-4154A693D4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745F82B4-C078-4683-86D2-4154A693D4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745F82B4-C078-4683-86D2-4154A693D4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745F82B4-C078-4683-86D2-4154A693D4BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4B65953-DEEC-499F-ACED-34475A57D6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B65953-DEEC-499F-ACED-34475A57D6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B65953-DEEC-499F-ACED-34475A57D6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B65953-DEEC-499F-ACED-34475A57D6C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
