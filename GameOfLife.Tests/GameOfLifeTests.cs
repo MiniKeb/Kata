@@ -24,9 +24,9 @@ namespace GameOfLife.Tests
             var render = grid.Render();
 
             var expected = @"
-000
-000
-000";
+___
+___
+___";
 
             Assert.That(render, Is.EqualTo(expected));
         }
@@ -37,11 +37,60 @@ namespace GameOfLife.Tests
             var grid = new Grid(5, 5);
             var render = grid.Render();
             var expected = @"
-00000
-00000
-00000
-00000
-00000";
+_____
+_____
+_____
+_____
+_____";
+            Assert.That(render, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void OnPeutAfficherUneGrilleDe5Par5Avec1CelluleVivante()
+        {
+            var grid = new Grid(5, 5);
+            grid.AddLiveCell(3,3);
+            var render = grid.Render();
+            var expected = @"
+_____
+_____
+__€__
+_____
+_____";
+            Assert.That(render, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void OnPeutPasserALaGenerationSuivanteAvecUneSeuleCelluleVivante()
+        {
+            var grid = new Grid(5, 5);
+            grid.AddLiveCell(3, 3);
+            grid.Next();
+            var render = grid.Render();            
+            var expected = @"
+_____
+_____
+_____
+_____
+_____";
+            Assert.That(render, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void OnPeutPasserALaGenerationSuivanteAvecChaqueCelluleA2Voisines()
+        {
+            var grid = new Grid(5, 5);
+            grid.AddLiveCell(1, 1);
+            grid.AddLiveCell(1, 2);
+            grid.AddLiveCell(2, 1);
+            grid.Next();
+            var render = grid.Render();
+            var expected = @"
+€€___
+€€___
+_____
+_____
+_____";
             Assert.That(render, Is.EqualTo(expected));
         }
     }
