@@ -24,9 +24,9 @@ namespace GameOfLife.Tests
             var render = grid.Render();
 
             var expected = @"
-___
-___
-___";
+   
+   
+   ";
 
             Assert.That(render, Is.EqualTo(expected));
         }
@@ -37,11 +37,11 @@ ___";
             var grid = new Grid(5, 5);
             var render = grid.Render();
             var expected = @"
-_____
-_____
-_____
-_____
-_____";
+     
+     
+     
+     
+     ";
             Assert.That(render, Is.EqualTo(expected));
         }
 
@@ -52,11 +52,11 @@ _____";
             grid.AddLiveCell(3,3);
             var render = grid.Render();
             var expected = @"
-_____
-_____
-__€__
-_____
-_____";
+     
+     
+  O  
+     
+     ";
             Assert.That(render, Is.EqualTo(expected));
         }
 
@@ -68,11 +68,11 @@ _____";
             grid.Next();
             var render = grid.Render();            
             var expected = @"
-_____
-_____
-_____
-_____
-_____";
+     
+     
+     
+     
+     ";
             Assert.That(render, Is.EqualTo(expected));
         }
 
@@ -86,12 +86,52 @@ _____";
             grid.Next();
             var render = grid.Render();
             var expected = @"
-€€___
-€€___
-_____
-_____
-_____";
+OO   
+OO   
+     
+     
+     ";
             Assert.That(render, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void LesCellulesAvecPlusDe3VoisinsMeurent()
+        {
+            var grid = new Grid(5, 5);
+            grid.AddLiveCell(1, 1);
+            grid.AddLiveCell(1, 2);
+            grid.AddLiveCell(1, 3);
+            grid.AddLiveCell(2, 2);
+            grid.AddLiveCell(2, 3);
+            grid.Next();
+            var render = grid.Render();
+            var expected = @"
+O O  
+O O  
+     
+     
+     ";
+            Assert.That(render, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void LesCellulesAvec2ou3VoisinsRestentVivantesDeManiereStandard()
+        {
+            var grid = new Grid(5, 5);
+            grid.AddLiveCell(1, 1);
+            grid.AddLiveCell(1, 2);
+            grid.AddLiveCell(1, 3);
+            grid.AddLiveCell(2, 2);
+            grid.Next();
+            var render = grid.Render();
+            var expected = @"
+OOO  
+OOO  
+     
+     
+     ";
+            Assert.That(render, Is.EqualTo(expected));
+        }
+
     }
 }

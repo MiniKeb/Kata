@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace GameOfLife
 {
     using System;
@@ -28,11 +30,11 @@ namespace GameOfLife
                 {
                     if (LiveCells.Contains(new Cell(x, y)))
                     {
-                        gridState += "€";
+                        gridState += "O";
                     }
                     else
                     {
-                        gridState += "_";   
+                        gridState += " ";   
                     }                    
                 }
             }
@@ -44,8 +46,9 @@ namespace GameOfLife
             LiveCells.Add(new Cell(x-1, y-1));
         }
 
-        public void Next()
+        public bool Next()
         {
+            var copyLiveCells = new List<Cell>(LiveCells);
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -54,54 +57,36 @@ namespace GameOfLife
                     int alivedNeighbours = GetAliveNeighboursCount(cell);
                     if (alivedNeighbours == 3 && !LiveCells.Contains(cell))
                     {
-                        LiveCells.Add(cell);
+                        copyLiveCells.Add(cell);
                     }
-                    else if ((alivedNeighbours == 2 || alivedNeighbours == 3) && LiveCells.Contains(cell))
+                    else if ((alivedNeighbours != 2 && alivedNeighbours != 3) || !LiveCells.Contains(cell))
                     {
-                        // nothing fuck you
-                    }
-                    else
-                    {
-                        LiveCells.Remove(cell);
+                        copyLiveCells.Remove(cell);
                     }
                 }
             }
+            LiveCells = copyLiveCells;
+            return LiveCells.Count > 0;
         }
 
         private int GetAliveNeighboursCount(Cell cell)
         {
-            int count = 0;
-            if(LiveCells.Contains(new Cell(cell.X-1,cell.Y)))
+            var neighbours = new int[8,2]
+                {
+                    {cell.X-1,cell.Y},
+                    {cell.X + 1, cell.Y},
+                    {cell.X - 1, cell.Y - 1},
+                    {cell.X, cell.Y - 1},
+                    {cell.X + 1, cell.Y - 1},
+                    {cell.X - 1, cell.Y + 1},
+                    {cell.X, cell.Y + 1},
+                    {cell.X + 1, cell.Y + 1}
+                };
+
+            var count = 0;
+            for (int i = 0; i < neighbours.Length / neighbours.Rank; i++)
             {
-                count++;
-            }
-            if (LiveCells.Contains(new Cell(cell.X + 1, cell.Y)))
-            {
-                count++;
-            }
-            if (LiveCells.Contains(new Cell(cell.X - 1, cell.Y - 1)))
-            {
-                count++;
-            }
-            if (LiveCells.Contains(new Cell(cell.X, cell.Y - 1)))
-            {
-                count++;
-            }
-            if (LiveCells.Contains(new Cell(cell.X + 1, cell.Y - 1)))
-            {
-                count++;
-            }
-            if (LiveCells.Contains(new Cell(cell.X - 1, cell.Y + 1)))
-            {
-                count++;
-            }
-            if (LiveCells.Contains(new Cell(cell.X, cell.Y + 1)))
-            {
-                count++;
-            }
-            if (LiveCells.Contains(new Cell(cell.X + 1, cell.Y + 1)))
-            {
-                count++;
+                if (this.LiveCells.Contains(new Cell(neighbours[i, 0], neighbours[i, 1]))) count++;
             }
 
             return count;
