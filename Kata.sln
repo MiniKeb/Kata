@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife", "GameOfLife\Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife.Tests", "GameOfLife.Tests\GameOfLife.Tests.csproj", "{F4B65953-DEEC-499F-ACED-34475A57D6C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanNumeralsTests", "RomanNumeralsTests\RomanNumeralsTests.csproj", "{EC39039C-C636-4B68-973E-5EACB12045B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanNumerals", "RomanNumerals\RomanNumerals.csproj", "{661BECDB-178F-4C65-BA43-10F296E963EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{F4B65953-DEEC-499F-ACED-34475A57D6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4B65953-DEEC-499F-ACED-34475A57D6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4B65953-DEEC-499F-ACED-34475A57D6C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC39039C-C636-4B68-973E-5EACB12045B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC39039C-C636-4B68-973E-5EACB12045B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC39039C-C636-4B68-973E-5EACB12045B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC39039C-C636-4B68-973E-5EACB12045B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{661BECDB-178F-4C65-BA43-10F296E963EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{661BECDB-178F-4C65-BA43-10F296E963EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{661BECDB-178F-4C65-BA43-10F296E963EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{661BECDB-178F-4C65-BA43-10F296E963EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
